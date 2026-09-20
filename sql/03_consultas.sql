@@ -40,7 +40,7 @@ SELECT
 	WHERE v.id_cliente IN (
 	SELECT c.id_pessoa
 	FROM cliente AS c
-	WHERE c.cpf IS NULL
+	WHERE c.cpf IS NOT NULL
 	)
 ORDER BY v.data_hora DESC;
 
