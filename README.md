@@ -9,9 +9,9 @@ Projeto final da disciplina **Laboratório de Banco de Dados (GPE17M40083)** —
 
 Integrantes
 
-_[José Antônio Rodrigues Tozetti]_
-_[Henrique Caio]_
-_[Gustavo Teixeira]_
+_José Antônio Rodrigues Tozetti_
+_Henrique Kaio Ferreira da Silva_
+_Gustavo Teixeira de Sousa_
 
 ## Tema do projeto
 
