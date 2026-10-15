@@ -169,3 +169,17 @@ CREATE TABLE kit_composicao (
 );
 CREATE INDEX idx_venda_data_hora ON venda (data_hora);
 CREATE INDEX idx_produto_nome ON produto (nome);
+
+
+
+CREATE OR REPLACE VIEW vw_resumo_vendas_diarias AS
+SELECT DATE(v.data_hora)                              AS dia,
+       COUNT(DISTINCT v.id_venda)                     AS qtd_vendas,
+       SUM(iv.quantidade)                             AS itens_vendidos,
+       SUM(iv.quantidade * iv.preco_congelado)        AS faturamento,
+       ROUND(SUM(iv.quantidade * iv.preco_congelado)
+             / COUNT(DISTINCT v.id_venda), 2)         AS ticket_medio
+FROM venda v
+INNER JOIN item_venda iv ON iv.id_venda = v.id_venda
+WHERE v.status = 'Concluída'
+GROUP BY DATE(v.data_hora);
