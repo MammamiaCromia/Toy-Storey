@@ -33,6 +33,10 @@ public class InterfaceInicio extends javax.swing.JFrame {
         jBproduto = new javax.swing.JButton();
         jBcliente = new javax.swing.JButton();
         jBfuncionario = new javax.swing.JButton();
+        jBvenda = new javax.swing.JButton();
+        jBcategoria1 = new javax.swing.JButton();
+        jBcategoria2 = new javax.swing.JButton();
+        jBrelatorio = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,6 +54,18 @@ public class InterfaceInicio extends javax.swing.JFrame {
         jBfuncionario.setText("Funcionario");
         jBfuncionario.addActionListener(this::jBfuncionarioActionPerformed);
 
+        jBvenda.setText("Vendas");
+        jBvenda.addActionListener(this::jBvendaActionPerformed);
+
+        jBcategoria1.setText("Consultar Vendas");
+        jBcategoria1.addActionListener(this::jBcategoria1ActionPerformed);
+
+        jBcategoria2.setText("Consultar Produtos");
+        jBcategoria2.addActionListener(this::jBcategoria2ActionPerformed);
+
+        jBrelatorio.setText("Gerar Relatório");
+        jBrelatorio.addActionListener(this::jBrelatorioActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -58,30 +74,49 @@ public class InterfaceInicio extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(112, 112, 112)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(150, 150, 150)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jBfuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jBcliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jBproduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jBcategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(118, Short.MAX_VALUE))
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jBvenda, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jBrelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jBcategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jBproduto, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jBcategoria1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jBcategoria2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(38, 38, 38)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jBfuncionario)
+                            .addComponent(jBcliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jBcategoria)
-                .addGap(18, 18, 18)
-                .addComponent(jBproduto)
-                .addGap(18, 18, 18)
-                .addComponent(jBcliente)
-                .addGap(18, 18, 18)
-                .addComponent(jBfuncionario)
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBcategoria)
+                    .addComponent(jBcliente)
+                    .addComponent(jBcategoria1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBfuncionario)
+                    .addComponent(jBproduto)
+                    .addComponent(jBcategoria2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBvenda)
+                    .addComponent(jBrelatorio))
+                .addContainerGap(147, Short.MAX_VALUE))
         );
 
         pack();
@@ -106,6 +141,26 @@ public class InterfaceInicio extends javax.swing.JFrame {
         InterfaceFuncionario tela = new InterfaceFuncionario();
         tela.setVisible(true);
     }//GEN-LAST:event_jBfuncionarioActionPerformed
+
+    private void jBvendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBvendaActionPerformed
+        InterfaceVenda tela = new InterfaceVenda();
+        tela.setVisible(true);
+    }//GEN-LAST:event_jBvendaActionPerformed
+
+    private void jBcategoria1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcategoria1ActionPerformed
+        InterfaceConsultaVendas tela = new InterfaceConsultaVendas();
+        tela.setVisible(true);
+    }//GEN-LAST:event_jBcategoria1ActionPerformed
+
+    private void jBcategoria2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcategoria2ActionPerformed
+        InterfaceConsultaProdutos tela = new InterfaceConsultaProdutos();
+        tela.setVisible(true);
+    }//GEN-LAST:event_jBcategoria2ActionPerformed
+
+    private void jBrelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBrelatorioActionPerformed
+        InterfaceRelatorio tela = new InterfaceRelatorio();
+        tela.setVisible(true);
+    }//GEN-LAST:event_jBrelatorioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -134,9 +189,13 @@ public class InterfaceInicio extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBcategoria;
+    private javax.swing.JButton jBcategoria1;
+    private javax.swing.JButton jBcategoria2;
     private javax.swing.JButton jBcliente;
     private javax.swing.JButton jBfuncionario;
     private javax.swing.JButton jBproduto;
+    private javax.swing.JButton jBrelatorio;
+    private javax.swing.JButton jBvenda;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,6 +4,9 @@
  */
 package br.com.visao;
 
+import br.com.controle.Funcionario;
+import br.com.entidade.CRUDFuncionario;
+
 /**
  *
  * @author joser
@@ -28,22 +31,525 @@ public class InterfaceFuncionario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLresultado = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jTnome = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jCstatus = new javax.swing.JComboBox<>();
+        jLabel6 = new javax.swing.JLabel();
+        jTid = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jTlogin = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jBcriar = new javax.swing.JButton();
+        jPsenha = new javax.swing.JPasswordField();
+        jCcargo = new javax.swing.JComboBox<>();
+        jPconfirmar = new javax.swing.JPasswordField();
+        jLabel7 = new javax.swing.JLabel();
+        jBatualizar = new javax.swing.JButton();
+        jBencontrar = new javax.swing.JButton();
+        jBinativar = new javax.swing.JButton();
+        jBdeletar = new javax.swing.JButton();
+        jBtrocarsenha = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLresultado.setText("_");
+
+        jLabel1.setText("Nome");
+
+        jTnome.addActionListener(this::jTnomeActionPerformed);
+
+        jLabel2.setText("Status");
+
+        jCstatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ativo", "Inativo" }));
+
+        jLabel6.setText("ID");
+
+        jLabel3.setText("Login");
+
+        jTlogin.addActionListener(this::jTloginActionPerformed);
+
+        jLabel4.setText("Senha");
+
+        jLabel5.setText("Cargo");
+
+        jBcriar.setText("Criar Funcionario");
+        jBcriar.addActionListener(this::jBcriarActionPerformed);
+
+        jPsenha.addActionListener(this::jPsenhaActionPerformed);
+
+        jCcargo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Operador", "Gerente" }));
+        jCcargo.addActionListener(this::jCcargoActionPerformed);
+
+        jLabel7.setText("Confirme a Senha");
+
+        jBatualizar.setText("Atualizar Funcionario");
+        jBatualizar.addActionListener(this::jBatualizarActionPerformed);
+
+        jBencontrar.setText("Encontrar Funcionario");
+        jBencontrar.addActionListener(this::jBencontrarActionPerformed);
+
+        jBinativar.setText("Inativar Funcionario");
+        jBinativar.addActionListener(this::jBinativarActionPerformed);
+
+        jBdeletar.setText("Deletar Funcionario");
+        jBdeletar.addActionListener(this::jBdeletarActionPerformed);
+
+        jBtrocarsenha.setText("Trocar Senha do Funcionario");
+        jBtrocarsenha.addActionListener(this::jBtrocarsenhaActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 53, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLresultado, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTnome, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addComponent(jLabel1)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(39, 39, 39)
+                                .addComponent(jCstatus, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(51, 51, 51)
+                                .addComponent(jLabel2)))
+                        .addGap(34, 34, 34)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTid, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel6)
+                                .addGap(30, 30, 30))))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(jBcriar)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jBencontrar))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jBatualizar)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jBinativar))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jBdeletar)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jBtrocarsenha))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jTlogin, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(33, 33, 33)
+                                    .addComponent(jLabel3)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(27, 27, 27)
+                                            .addComponent(jPsenha, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(54, 54, 54)
+                                            .addComponent(jLabel4)))
+                                    .addGap(0, 0, Short.MAX_VALUE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jPconfirmar))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(38, 38, 38)
+                                    .addComponent(jLabel5))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jCcargo, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGap(15, 15, 15))))
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTnome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCstatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel6)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(22, 22, 22)
+                            .addComponent(jTid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel3)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTlogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPsenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jCcargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPconfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBcriar)
+                    .addComponent(jBencontrar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBatualizar)
+                    .addComponent(jBinativar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBdeletar)
+                    .addComponent(jBtrocarsenha))
+                .addGap(4, 4, 4)
+                .addComponent(jLresultado)
+                .addGap(14, 14, 14))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTnomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTnomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTnomeActionPerformed
+
+    private void jTloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTloginActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTloginActionPerformed
+
+    private void jBcriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcriarActionPerformed
+        String nome = jTnome.getText().trim();
+        String login = jTlogin.getText().trim();
+        String senha = new String(jPsenha.getPassword());
+        String confirmar = new String(jPconfirmar.getPassword());
+
+        if (nome.isEmpty()) {
+            mostrarErro("Informe o nome do funcionário.");
+            jTnome.requestFocus();
+            return;
+        }
+        
+        if (nome.length() > 100) {
+            mostrarErro("O nome é grande demais (máximo 100 caracteres).");
+            jTnome.requestFocus();
+            return;
+        }
+        
+        if (login.isEmpty()) {
+            mostrarErro("Informe o login.");
+            jTlogin.requestFocus();
+            return;
+        }
+        
+        if (login.length() > 100) {
+            mostrarErro("O login é grande demais (máximo 100 caracteres).");
+            jTlogin.requestFocus();
+            return;
+        }
+        
+        if (senha.length() < 6) {
+            mostrarErro("A senha deve ter pelo menos 6 caracteres.");
+            jPsenha.requestFocus();
+            return;
+        }
+        
+        if (!senha.equals(confirmar)) {
+            mostrarErro("A confirmação da senha não confere.");
+            jPconfirmar.requestFocus();
+            return;
+        }
+
+        Funcionario f = new Funcionario();
+        f.setNome(nome);
+        f.setLogin(login);
+        f.setCargo((String) jCcargo.getSelectedItem());
+        f.setStatus((String) jCstatus.getSelectedItem());
+
+        try {
+            new CRUDFuncionario().inserir(f, senha);
+            limparCampos();
+            mostrarSucesso("Funcionário \"" + nome + "\" cadastrado com sucesso! (id " + f.getId() + ")");
+        } catch (java.sql.SQLException ex) {
+            if (ex.getErrorCode() == 1062) {
+                mostrarErro("Já existe um funcionário com esse login.");
+            } else if (ex.getErrorCode() == 1406) {
+                mostrarErro("Nome ou login grande demais.");
+            } else if (ex.getErrorCode() == 3819) {
+                mostrarErro("Algum valor viola uma regra do sistema.");
+            } else {
+                mostrarErro("Não foi possível cadastrar o funcionário.");
+            }
+        } catch (Exception ex) {
+            mostrarErro("Não foi possível cadastrar o funcionário.");
+            logger.log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jBcriarActionPerformed
+
+    private void jCcargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCcargoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCcargoActionPerformed
+
+    private void jPsenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPsenhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPsenhaActionPerformed
+
+    private void jBatualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBatualizarActionPerformed
+        Integer id = lerId();
+        if (id == null) {
+            return;
+        }
+
+        String nome = jTnome.getText().trim();
+        String login = jTlogin.getText().trim();
+
+        if (nome.isEmpty()) {
+            mostrarErro("Informe o nome do funcionário.");
+            jTnome.requestFocus();
+            return;
+        }
+        
+        if (nome.length() > 100) {
+            mostrarErro("O nome é grande demais (máximo 100 caracteres).");
+            jTnome.requestFocus();
+            return;
+        }
+        
+        if (login.isEmpty()) {
+            mostrarErro("Informe o login.");
+            jTlogin.requestFocus();
+            return;
+        }
+        
+        if (login.length() > 100) {
+            mostrarErro("O login é grande demais (máximo 100 caracteres).");
+            jTlogin.requestFocus();
+            return;
+        }
+
+        Funcionario f = new Funcionario();
+        f.setId(id);
+        f.setNome(nome);
+        f.setLogin(login);
+        f.setCargo((String) jCcargo.getSelectedItem());
+        f.setStatus((String) jCstatus.getSelectedItem());
+
+        try {
+            int linhas = new CRUDFuncionario().atualizar(f);
+            if (linhas == 0) {
+                mostrarErro("Funcionário não encontrado (id " + id + ").");
+                return;
+            }
+            limparCampos();
+            mostrarSucesso("Funcionário \"" + nome + "\" atualizado com sucesso! (id " + id + ")");
+        } catch (java.sql.SQLException ex) {
+            if (ex.getErrorCode() == 1062) {
+                mostrarErro("Já existe um funcionário com esse login.");
+            } else if (ex.getErrorCode() == 1406) {
+                mostrarErro("Nome ou login grande demais.");
+            } else if (ex.getErrorCode() == 3819) {
+                mostrarErro("Algum valor viola uma regra do sistema.");
+            } else {
+                mostrarErro("Não foi possível atualizar o funcionário.");
+            }
+        } catch (Exception ex) {
+            mostrarErro("Não foi possível atualizar o funcionário.");
+            logger.log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jBatualizarActionPerformed
+
+    private void jBencontrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBencontrarActionPerformed
+        String idTexto = jTid.getText().trim();
+        String login = jTlogin.getText().trim();
+        CRUDFuncionario cr = new CRUDFuncionario();
+
+        try {
+            Funcionario f;
+            if (!idTexto.isEmpty()) {
+                Integer id = lerId();
+            if (id == null) {
+                return;
+            }
+            
+            f = cr.encontrar(id);
+            } else if (!login.isEmpty()) {
+                f = cr.encontrarPorLogin(login);
+            } else {
+                mostrarErro("Informe o Id ou o login para buscar.");
+                jTid.requestFocus();
+                return;
+            }
+
+            if (f == null) {
+                mostrarErro("Funcionário não encontrado.");
+                return;
+            }
+            
+            preencher(f);
+            mostrarSucesso("Funcionário encontrado: " + f.getNome() + " (" + f.getCargo() + ")");
+        } catch (Exception ex) {
+            mostrarErro("Não foi possível buscar o funcionário.");
+            logger.log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jBencontrarActionPerformed
+
+    private void jBinativarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBinativarActionPerformed
+        Integer id = lerId();
+        if (id == null) {
+            return;
+        }
+
+        try {
+            int linhas = new CRUDFuncionario().inativar(id);
+            if (linhas == 0) {
+                mostrarErro("Funcionário não encontrado (id " + id + ").");
+                return;
+            }
+            
+            jCstatus.setSelectedItem("Inativo");
+            mostrarSucesso("Funcionário inativado. O histórico de vendas foi mantido.");
+        } catch (Exception ex) {
+            mostrarErro("Não foi possível inativar o funcionário.");
+            logger.log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jBinativarActionPerformed
+
+    private void jBdeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBdeletarActionPerformed
+        Integer id = lerId();
+        if (id == null) {
+            return;
+        }
+
+        int opcao = javax.swing.JOptionPane.showConfirmDialog(this,
+            "Apagar o funcionário de id " + id + "?\n"
+            + "Quem já registrou vendas não pode ser apagado (use \"Inativar\").",
+            "Confirmar exclusão",
+            javax.swing.JOptionPane.YES_NO_OPTION,
+            javax.swing.JOptionPane.WARNING_MESSAGE);
+        if (opcao != javax.swing.JOptionPane.YES_OPTION) {
+            return;
+        }
+
+        Funcionario f = new Funcionario();
+        f.setId(id);
+
+        try {
+            int linhas = new CRUDFuncionario().deletar(f);
+            if (linhas == 0) {
+                mostrarErro("Funcionário não encontrado (id " + id + ").");
+                return;
+            }
+            limparCampos();
+            mostrarSucesso("Funcionário apagado com sucesso!");
+        } catch (java.sql.SQLException ex) {
+            if (ex.getErrorCode() == 1451) {
+                mostrarErro("Não é possível apagar: este funcionário já registrou vendas. Use Inativar.");
+            } else {
+                mostrarErro("Não foi possível apagar o funcionário.");
+            }
+        } catch (Exception ex) {
+            mostrarErro("Não foi possível apagar o funcionário.");
+            logger.log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jBdeletarActionPerformed
+
+    private void jBtrocarsenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtrocarsenhaActionPerformed
+        Integer id = lerId();
+        if (id == null) {
+            return;
+        }
+
+        String senha = new String(jPsenha.getPassword());
+        String confirmar = new String(jPconfirmar.getPassword());
+
+        if (senha.length() < 6) {
+            mostrarErro("A nova senha deve ter pelo menos 6 caracteres.");
+            jPsenha.requestFocus();
+            return;
+        }
+        
+        if (!senha.equals(confirmar)) {
+            mostrarErro("A confirmação da senha não confere.");
+            jPconfirmar.requestFocus();
+            return;
+        }
+
+        try {
+            int linhas = new CRUDFuncionario().alterarSenha(id, senha);
+            if (linhas == 0) {
+                mostrarErro("Funcionário não encontrado (id " + id + ").");
+                return;
+            }
+            
+            jPsenha.setText("");
+            jPconfirmar.setText("");
+            mostrarSucesso("Senha alterada com sucesso!");
+        } catch (Exception ex) {
+            mostrarErro("Não foi possível alterar a senha.");
+            logger.log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jBtrocarsenhaActionPerformed
+
+    
+    
+    
+private void mostrarErro(String msg) {
+    jLresultado.setForeground(java.awt.Color.RED);
+    jLresultado.setText(msg);
+}
+
+private void mostrarSucesso(String msg) {
+    jLresultado.setForeground(new java.awt.Color(0, 128, 0));
+    jLresultado.setText(msg);
+}
+
+private Integer lerId() {
+    try {
+        return Integer.valueOf(jTid.getText().trim());
+    } catch (NumberFormatException ex) {
+        mostrarErro("Informe um ID numérico válido.");
+        jTid.requestFocus();
+        return null;
+    }
+}
+
+private void preencher(Funcionario f) {
+    jTid.setText(String.valueOf(f.getId()));
+    jTnome.setText(f.getNome());
+    jTlogin.setText(f.getLogin());
+    jCcargo.setSelectedItem(f.getCargo());
+    jCstatus.setSelectedItem(f.getStatus());
+    jPsenha.setText("");        // o hash nunca é carregado: as senhas ficam vazias
+    jPconfirmar.setText("");
+}
+
+private void limparCampos() {
+    jTid.setText("");
+    jTnome.setText("");
+    jTlogin.setText("");
+    jPsenha.setText("");
+    jPconfirmar.setText("");
+    jCcargo.setSelectedIndex(0);
+    jCstatus.setSelectedIndex(0);
+    jTnome.requestFocus();
+}
     /**
      * @param args the command line arguments
      */
@@ -70,5 +576,26 @@ public class InterfaceFuncionario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBatualizar;
+    private javax.swing.JButton jBcriar;
+    private javax.swing.JButton jBdeletar;
+    private javax.swing.JButton jBencontrar;
+    private javax.swing.JButton jBinativar;
+    private javax.swing.JButton jBtrocarsenha;
+    private javax.swing.JComboBox<String> jCcargo;
+    private javax.swing.JComboBox<String> jCstatus;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLresultado;
+    private javax.swing.JPasswordField jPconfirmar;
+    private javax.swing.JPasswordField jPsenha;
+    private javax.swing.JTextField jTid;
+    private javax.swing.JTextField jTlogin;
+    private javax.swing.JTextField jTnome;
     // End of variables declaration//GEN-END:variables
 }

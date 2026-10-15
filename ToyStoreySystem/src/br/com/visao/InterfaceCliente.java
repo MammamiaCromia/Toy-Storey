@@ -4,6 +4,40 @@
  */
 package br.com.visao;
 
+import br.com.controle.Cliente;
+import br.com.entidade.CRUDCliente;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.WindowConstants;
+import javax.swing.table.DefaultTableModel;
+
+
 /**
  *
  * @author joser
@@ -28,22 +62,534 @@ public class InterfaceCliente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jBcriar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jTnome = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLresultado = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jTcpf = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jTnascimento = new javax.swing.JTextField();
+        jCstatus = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
+        jTpontos = new javax.swing.JTextField();
+        jBatualizar = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jTid = new javax.swing.JTextField();
+        jBinativar = new javax.swing.JButton();
+        jBdeletar = new javax.swing.JButton();
+        jBbuscar = new javax.swing.JButton();
+        jBbuscarcpf = new javax.swing.JButton();
+        jBlistar = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jBcriar.setText("Criar Cliente");
+        jBcriar.addActionListener(this::jBcriarActionPerformed);
+
+        jLabel1.setText("Nome");
+
+        jLabel2.setText("Status");
+
+        jLresultado.setText("_");
+
+        jLabel3.setText("CPF");
+
+        jLabel4.setText("Data de Nascimento");
+
+        jCstatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ativo", "Inativo" }));
+
+        jLabel5.setText("Pontos");
+
+        jBatualizar.setText("Atualizar Cliente");
+        jBatualizar.addActionListener(this::jBatualizarActionPerformed);
+
+        jLabel6.setText("ID");
+
+        jBinativar.setText("Inativar Cliente");
+        jBinativar.addActionListener(this::jBinativarActionPerformed);
+
+        jBdeletar.setText("Deletar Cliente");
+        jBdeletar.addActionListener(this::jBdeletarActionPerformed);
+
+        jBbuscar.setText("Buscar Cliente");
+        jBbuscar.addActionListener(this::jBbuscarActionPerformed);
+
+        jBbuscarcpf.setText("Buscar por CPF");
+        jBbuscarcpf.addActionListener(this::jBbuscarcpfActionPerformed);
+
+        jBlistar.setText("Listar Cliente");
+        jBlistar.addActionListener(this::jBlistarActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLresultado, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTnome, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jBcriar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jTnascimento)
+                                .addComponent(jBinativar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jBatualizar, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
+                            .addComponent(jBbuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jBbuscarcpf, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jBdeletar, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+                            .addComponent(jBlistar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(85, 85, 85)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel2)
+                                .addGap(43, 43, 43))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(jTid, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jCstatus, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(14, 14, 14)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTcpf, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(43, 43, 43)
+                                .addComponent(jLabel3))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTpontos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(125, 125, 125)
+                                .addComponent(jLabel5)))))
+                .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTnome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(28, 28, 28))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTcpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jCstatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel6)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTnascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTpontos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBcriar)
+                    .addComponent(jBatualizar)
+                    .addComponent(jBdeletar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBinativar)
+                    .addComponent(jBbuscar)
+                    .addComponent(jBlistar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBbuscarcpf)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addComponent(jLresultado)
+                .addGap(14, 14, 14))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jBcriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcriarActionPerformed
+        String nome = jTnome.getText().trim();
+        String cpf = jTcpf.getText().trim();
+        String nascimento = jTnascimento.getText().trim();
+        int pontos;
+        
+        try {
+            pontos = Integer.parseInt(jTpontos.getText().trim());
+        } catch (NumberFormatException ex) {
+            mostrarErro("Informe um ID válido.");
+            jTid.requestFocus();
+            return;
+        }
+
+        if (nome.isEmpty()) {
+            mostrarErro("Informe o nome do cliente.");
+            jTnome.requestFocus();
+            return;
+        }
+        if (!cpf.matches("\\d{11}")) {
+            mostrarErro("O CPF deve ter 11 dígitos numéricos.");
+            jTcpf.requestFocus();
+            return;
+        }
+
+        java.time.LocalDate data;
+        try {
+            data = java.time.LocalDate.parse(nascimento,
+            java.time.format.DateTimeFormatter.ofPattern("dd/MM/uuuu")
+            .withResolverStyle(java.time.format.ResolverStyle.STRICT));
+        } catch (java.time.format.DateTimeParseException ex) {
+            mostrarErro("Data inválida. Use o formato dd/mm/aaaa.");
+            jTnascimento.requestFocus();
+            return;
+        }
+    if (data.isAfter(java.time.LocalDate.now())) {
+        mostrarErro("A data de nascimento não pode ser futura.");
+        jTnascimento.requestFocus();
+        return;
+    }
+
+    Cliente ct = new Cliente();
+    ct.setNome(nome);
+    ct.setStatus((String) jCstatus.getSelectedItem());
+    ct.setCpf(cpf);
+    ct.setDataNascimento(data);
+    ct.setPontosFidelidade(pontos);
+
+    CRUDCliente cr = new CRUDCliente();
+    try {
+        cr.inserir(ct);
+        mostrarSucesso("Cliente \"" + nome + "\" cadastrado com sucesso! (id " + ct.getId() + ")");
+        jTnome.setText("");
+        jTpontos.setText("");
+        jTcpf.setText("");
+        jTnascimento.setText("");
+        jTnome.requestFocus();
+    } catch (java.sql.SQLException ex) {
+        if (ex.getErrorCode() == 1062) {
+            mostrarErro("Já existe um cliente com esse CPF.");
+        } else if (ex.getErrorCode() == 1406) {
+            mostrarErro("Nome ou CPF grande demais.");
+        } else {
+            mostrarErro("Não foi possível cadastrar o cliente.");
+        }
+    } catch (Exception ex) {
+        mostrarErro("Não foi possível cadastrar o cliente.");
+        logger.log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jBcriarActionPerformed
+
+    private void jBatualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBatualizarActionPerformed
+        String nome = jTnome.getText().trim();
+        String cpf = jTcpf.getText().trim();
+        int pontos;
+        int id;
+        String nascimento = jTnascimento.getText().trim();
+        
+        try {
+            pontos = Integer.parseInt(jTpontos.getText().trim());
+        } catch (NumberFormatException ex) {
+            mostrarErro("Informe um ID válido.");
+            jTid.requestFocus();
+            return;
+        }
+        
+        try {
+            id = Integer.parseInt(jTid.getText().trim());
+        } catch (NumberFormatException ex) {
+            mostrarErro("Informe um ID válido.");
+            jTid.requestFocus();
+            return;
+        }
+
+        if (nome.isEmpty()) {
+            mostrarErro("Informe o nome do cliente.");
+            jTnome.requestFocus();
+            return;
+        }
+        if (!cpf.matches("\\d{11}")) {
+            mostrarErro("O CPF deve ter 11 dígitos numéricos.");
+            jTcpf.requestFocus();
+            return;
+        }
+
+        java.time.LocalDate data;
+        try {
+            data = java.time.LocalDate.parse(nascimento,
+            java.time.format.DateTimeFormatter.ofPattern("dd/MM/uuuu")
+            .withResolverStyle(java.time.format.ResolverStyle.STRICT));
+        } catch (java.time.format.DateTimeParseException ex) {
+            mostrarErro("Data inválida. Use o formato dd/mm/aaaa.");
+            jTnascimento.requestFocus();
+            return;
+        }
+    if (data.isAfter(java.time.LocalDate.now())) {
+        mostrarErro("A data de nascimento não pode ser futura.");
+        jTnascimento.requestFocus();
+        return;
+    }
+
+    Cliente ct = new Cliente();
+    ct.setNome(nome);
+    ct.setStatus((String) jCstatus.getSelectedItem());
+    ct.setId(id);
+    ct.setCpf(cpf);
+    ct.setDataNascimento(data);
+    ct.setPontosFidelidade(pontos);
+
+    CRUDCliente cr = new CRUDCliente();
+        try {
+            cr.atualizar(ct);
+            mostrarSucesso("Cliente \"" + nome + "\" atualizado com sucesso! (id " + ct.getId() + ")");
+            jTnome.setText("");
+            jTcpf.setText("");
+            jTid.setText("");
+            jTpontos.setText("");
+            jTnascimento.setText("");
+            jTnome.requestFocus();
+        } catch (java.sql.SQLException ex) {
+            if (ex.getErrorCode() == 1062) {
+                mostrarErro("Já existe um cliente com esse CPF.");
+            } else if (ex.getErrorCode() == 1406) {
+                mostrarErro("Nome ou CPF grande demais.");
+            } else {
+                mostrarErro("Não foi possível atualizar o cliente.");
+            }
+        } catch (Exception ex) {
+            mostrarErro("Não foi possível cadastrar o cliente.");
+            logger.log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jBatualizarActionPerformed
+
+    private void jBinativarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBinativarActionPerformed
+        int id;
+
+        try {
+            id = Integer.parseInt(jTid.getText().trim());
+        } catch (NumberFormatException ex) {
+            mostrarErro("Informe um ID válido.");
+            jTid.requestFocus();
+            return;
+        }
+
+        CRUDCliente cr = new CRUDCliente();
+            try {
+                cr.inativar(id);
+                mostrarSucesso("Cliente inativado com sucesso! (id " + id + ")");
+                jTnome.setText("");
+                jTcpf.setText("");
+                jTid.setText("");
+                jTnascimento.setText("");
+                jTnome.requestFocus();
+            } catch (java.sql.SQLException ex) {
+                if (ex.getErrorCode() == 1062) {
+                    mostrarErro("Já existe um cliente com esse CPF.");
+                } else if (ex.getErrorCode() == 1406) {
+                    mostrarErro("Nome ou CPF grande demais.");
+                } else {
+                    mostrarErro("Não foi possível atualizar o cliente.");
+                }
+            } catch (Exception ex) {
+                mostrarErro("Não foi possível cadastrar o cliente.");
+                logger.log(java.util.logging.Level.SEVERE, null, ex);
+            }
+    }//GEN-LAST:event_jBinativarActionPerformed
+
+    private void jBdeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBdeletarActionPerformed
+        int id;
+        
+        try {
+            id = Integer.parseInt(jTid.getText().trim());
+        } catch (NumberFormatException ex) {
+            mostrarErro("Informe um ID válido.");
+            jTid.requestFocus();
+            return;
+        }
+        
+        Cliente ct = new Cliente();
+        ct.setId(id);
+
+
+        CRUDCliente cr = new CRUDCliente();
+            try {
+                cr.deletar(ct);
+                mostrarSucesso("Cliente deletado com sucesso! (id " + ct.getId() + ")");
+                jTnome.setText("");
+                jTcpf.setText("");
+                jTid.setText("");
+                jTnascimento.setText("");
+                jTnome.requestFocus();
+            } catch (java.sql.SQLException ex) {
+                if (ex.getErrorCode() == 1062) {
+                    mostrarErro("Já existe um cliente com esse CPF.");
+                } else if (ex.getErrorCode() == 1406) {
+                    mostrarErro("Nome ou CPF grande demais.");
+                } else {
+                    mostrarErro("Não foi possível atualizar o cliente.");
+                }
+            } catch (Exception ex) {
+                mostrarErro("Não foi possível cadastrar o cliente.");
+                logger.log(java.util.logging.Level.SEVERE, null, ex);
+            }
+    }//GEN-LAST:event_jBdeletarActionPerformed
+
+    private void jBbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBbuscarActionPerformed
+        int id;
+
+        try {
+            id = Integer.parseInt(jTid.getText().trim());
+        } catch (NumberFormatException ex) {
+            mostrarErro("Informe um ID válido.");
+            jTid.requestFocus();
+            return;
+        }
+
+        CRUDCliente cr = new CRUDCliente();
+
+        try {
+            Cliente ct = cr.encontrar(id);
+
+            if (ct == null) {
+                mostrarErro("Nenhum cliente encontrado com esse ID.");
+                jTid.requestFocus();
+                return;
+        }
+
+        jTnome.setText(ct.getNome());
+        jTcpf.setText(ct.getCpf());
+        jCstatus.setSelectedItem(ct.getStatus());
+        jTpontos.setText(String.valueOf(ct.getPontosFidelidade()));
+        jTnascimento.setText(
+        ct.getDataNascimento().format(
+            java.time.format.DateTimeFormatter.ofPattern("dd/MM/uuuu")
+        )
+    );
+
+        mostrarSucesso("Cliente encontrado com sucesso! (id " + ct.getId() + ")");
+
+        } catch (java.sql.SQLException ex) {
+            mostrarErro("Não foi possível buscar o cliente.");
+            logger.log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            mostrarErro("Não foi possível buscar o cliente.");
+            logger.log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jBbuscarActionPerformed
+
+    private void jBbuscarcpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBbuscarcpfActionPerformed
+        String cpf = jTcpf.getText().trim();
+
+        if (!cpf.matches("\\d{11}")) {
+            mostrarErro("O CPF deve ter 11 dígitos numéricos.");
+            jTcpf.requestFocus();
+            return;
+        }
+
+        CRUDCliente cr = new CRUDCliente();
+
+        try {
+            Cliente ct = cr.encontrarPorCpf(cpf);
+
+            if (ct == null) {
+                mostrarErro("Nenhum cliente encontrado com esse ID.");
+                jTid.requestFocus();
+                return;
+        }
+
+        jTnome.setText(ct.getNome());
+        jTcpf.setText(ct.getCpf());
+        jTid.setText(String.valueOf(ct.getId()));
+        jTpontos.setText(String.valueOf(ct.getPontosFidelidade()));
+        jCstatus.setSelectedItem(ct.getStatus());
+        jTnascimento.setText(
+        ct.getDataNascimento().format(
+            java.time.format.DateTimeFormatter.ofPattern("dd/MM/uuuu")
+        )
+    );
+
+        mostrarSucesso("Cliente encontrado com sucesso! (id " + ct.getId() + ")");
+
+        } catch (java.sql.SQLException ex) {
+            mostrarErro("Não foi possível buscar o cliente.");
+            logger.log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            mostrarErro("Não foi possível buscar o cliente.");
+            logger.log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jBbuscarcpfActionPerformed
+
+    private void jBlistarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBlistarActionPerformed
+        CRUDCliente cr = new CRUDCliente();
+
+        try {
+            java.util.List<Cliente> lista = cr.listar();
+
+            if (lista.isEmpty()) {
+                mostrarErro("Nenhum cliente cadastrado.");
+                return;
+            }
+
+            StringBuilder mensagem = new StringBuilder();
+
+            for (Cliente ct : lista) {
+        mensagem.append("ID: ").append(ct.getId())
+                .append(" | Nome: ").append(ct.getNome())
+                .append(" | CPF: ").append(ct.getCpf())
+                .append(" | Status: ").append(ct.getStatus())
+                .append(" | Nascimento: ").append(ct.getDataNascimento())
+                .append(" | Pontos: ").append(ct.getPontosFidelidade())
+                .append("\n");
+            }
+
+        javax.swing.JOptionPane.showMessageDialog(
+            this,
+            mensagem.toString(),
+            "Lista de Clientes",
+            javax.swing.JOptionPane.INFORMATION_MESSAGE
+        );
+
+        } catch (Exception ex) {
+            mostrarErro("Não foi possível listar os clientes.");
+            logger.log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jBlistarActionPerformed
+
+    
+    
+private void mostrarErro(String msg) {
+    jLresultado.setForeground(java.awt.Color.RED);
+    jLresultado.setText(msg);
+}
+
+private void mostrarSucesso(String msg) {
+    jLresultado.setForeground(new java.awt.Color(0, 128, 0));
+    jLresultado.setText(msg);
+}
     /**
      * @param args the command line arguments
      */
@@ -70,5 +616,25 @@ public class InterfaceCliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBatualizar;
+    private javax.swing.JButton jBbuscar;
+    private javax.swing.JButton jBbuscarcpf;
+    private javax.swing.JButton jBcriar;
+    private javax.swing.JButton jBdeletar;
+    private javax.swing.JButton jBinativar;
+    private javax.swing.JButton jBlistar;
+    private javax.swing.JComboBox<String> jCstatus;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLresultado;
+    private javax.swing.JTextField jTcpf;
+    private javax.swing.JTextField jTid;
+    private javax.swing.JTextField jTnascimento;
+    private javax.swing.JTextField jTnome;
+    private javax.swing.JTextField jTpontos;
     // End of variables declaration//GEN-END:variables
 }

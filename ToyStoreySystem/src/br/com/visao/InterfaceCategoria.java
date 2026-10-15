@@ -48,9 +48,9 @@ public class InterfaceCategoria extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jBencontrar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        jTencontrarid = new javax.swing.JTextField();
-        jTencontrarnome = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
+        jTencontrar = new javax.swing.JTextField();
+        jTpercentual = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,6 +62,7 @@ public class InterfaceCategoria extends javax.swing.JFrame {
         jLabel1.setText("Nome");
 
         jBatualizar.setText("Alterar Nome da Categoria");
+        jBatualizar.addActionListener(this::jBatualizarActionPerformed);
 
         jLabel2.setText("Id:");
 
@@ -72,6 +73,7 @@ public class InterfaceCategoria extends javax.swing.JFrame {
         jLabel3.setText("Novo Nome");
 
         jBdeletar.setText("Deletar Categoria");
+        jBdeletar.addActionListener(this::jBdeletarActionPerformed);
 
         jLabel4.setText("Id:");
 
@@ -82,14 +84,15 @@ public class InterfaceCategoria extends javax.swing.JFrame {
         jLabel6.setText("Resultado:");
 
         jBencontrar.setText("Encontrar Categoria");
+        jBencontrar.addActionListener(this::jBencontrarActionPerformed);
 
         jLabel7.setText("Id:");
 
-        jTencontrarid.addActionListener(this::jTencontraridActionPerformed);
+        jTencontrar.addActionListener(this::jTencontrarActionPerformed);
 
-        jTencontrarnome.addActionListener(this::jTencontrarnomeActionPerformed);
+        jTpercentual.addActionListener(this::jTpercentualActionPerformed);
 
-        jLabel8.setText("Nome");
+        jLabel5.setText("Percentual de Ajuste");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -98,50 +101,53 @@ public class InterfaceCategoria extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(18, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLresultado, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(13, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(66, 66, 66)
-                                .addComponent(jLabel3))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jBcriar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTcriar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(50, 50, 50)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jBatualizar, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jBcriar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jTatualizarid, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
                                 .addGap(44, 44, 44)
-                                .addComponent(jTatualizarnome, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jTatualizarnome, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel3)
+                                .addGap(22, 22, 22))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTcriar, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(22, 22, 22)
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(16, 16, 16)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jTpercentual)))
+                            .addComponent(jBatualizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel7)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel8)
-                                        .addGap(34, 34, 34))
-                                    .addComponent(jBencontrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jTencontrarid, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(53, 53, 53)
-                                        .addComponent(jTencontrarnome, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(46, 46, 46)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(jBdeletar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jTdeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(52, 52, 52)
-                                        .addComponent(jLabel4)))
-                                .addGap(22, 22, 22))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLresultado, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(jLabel4))
+                                    .addComponent(jTencontrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(22, 22, 22))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabel7)
+                                        .addGap(72, 72, 72))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jBencontrar)
+                                        .addGap(14, 14, 14)))))))
                 .addGap(26, 26, 26))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -154,9 +160,13 @@ public class InterfaceCategoria extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTcriar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTcriar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTpercentual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBcriar))
                     .addGroup(layout.createSequentialGroup()
@@ -168,9 +178,11 @@ public class InterfaceCategoria extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel3))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel7)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTatualizarid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -178,13 +190,7 @@ public class InterfaceCategoria extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBatualizar))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTencontrarid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTencontrarnome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTencontrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBencontrar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
@@ -213,40 +219,183 @@ public class InterfaceCategoria extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTdeletarActionPerformed
 
-    private void jTencontraridActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTencontraridActionPerformed
+    private void jTencontrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTencontrarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTencontraridActionPerformed
-
-    private void jTencontrarnomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTencontrarnomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTencontrarnomeActionPerformed
+    }//GEN-LAST:event_jTencontrarActionPerformed
 
     private void jBcriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcriarActionPerformed
         String nome = jTcriar.getText().trim();
 
         if (nome.isEmpty()) {
+            jLresultado.setForeground(java.awt.Color.RED);
             jLresultado.setText("Informe o nome da categoria.");
             jTcriar.requestFocus();
             return;
         }
-        
-        
+
+        java.math.BigDecimal percentual = null;
+        String texto = jTpercentual.getText().trim();
+        if (!texto.isEmpty()) {
+            try {
+                percentual = new java.math.BigDecimal(texto.replace(",", "."));
+            } catch (NumberFormatException ex) {
+                jLresultado.setForeground(java.awt.Color.RED);
+                jLresultado.setText("Percentual inválido. Use apenas números (ex.: 5,50).");
+                jTpercentual.requestFocus();
+                return;
+            }
+        if (percentual.compareTo(java.math.BigDecimal.ZERO) < 0
+            || percentual.compareTo(new java.math.BigDecimal("999.99")) > 0) {
+                jLresultado.setForeground(java.awt.Color.RED);
+                jLresultado.setText("O percentual deve estar entre 0 e 999,99.");
+                jTpercentual.requestFocus();
+                return;
+            }
+        }
+
         Categoria ct = new Categoria();
-        ct.setNome(jTcriar.getText());
+        ct.setNome(nome);
+        ct.setPercentual(percentual);
         CRUDCategoria cr = new CRUDCategoria();
         try {
             cr.inserir(ct);
+            jLresultado.setForeground(new java.awt.Color(0, 128, 0));
+            jLresultado.setText("Categoria \"" + nome + "\" cadastrada com sucesso!");
             jTcriar.setText("");
+            jTpercentual.setText("");
             jTcriar.requestFocus();
-            
-            jLresultado.setText("Categoria cadastrada com sucesso!");
-            
+        } catch (java.sql.SQLException ex) {
+        jLresultado.setForeground(java.awt.Color.RED);
+        if (ex.getErrorCode() == 1062) {
+            jLresultado.setText("Já existe uma categoria com esse nome.");
+        } else {
+            jLresultado.setText("Não foi possível cadastrar a categoria.");
+        }
         } catch (Exception ex) {
+            jLresultado.setForeground(java.awt.Color.RED);
             jLresultado.setText("Não foi possível cadastrar a categoria.");
             Logger.getLogger(InterfaceCategoria.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jBcriarActionPerformed
 
+    private void jTpercentualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTpercentualActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTpercentualActionPerformed
+
+    private void jBdeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBdeletarActionPerformed
+       int id;
+        try {
+            id = Integer.parseInt(jTdeletar.getText().trim());
+        } catch (NumberFormatException ex) {
+            mostrarErro("Informe um ID numérico válido.");
+            jTdeletar.requestFocus();
+            return;
+        }
+
+        Categoria ct = new Categoria();
+        ct.setId(id);
+        CRUDCategoria cr = new CRUDCategoria();
+        try {
+            int linhas = cr.excluir(ct);
+            if (linhas == 0) {
+                mostrarErro("Categoria não encontrada (id " + id + ").");
+            } else {
+                mostrarSucesso("Categoria excluída com sucesso!");
+                jTdeletar.setText("");
+                jTdeletar.requestFocus();
+            }
+        } catch (java.sql.SQLException ex) {
+            if (ex.getErrorCode() == 1451) {
+                mostrarErro("Não é possível excluir: existem produtos nesta categoria.");
+            } else {
+                mostrarErro("Não foi possível excluir a categoria.");
+            }
+        } catch (Exception ex) {
+            mostrarErro("Não foi possível excluir a categoria.");
+            Logger.getLogger(InterfaceCategoria.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jBdeletarActionPerformed
+
+    private void jBatualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBatualizarActionPerformed
+    int id;
+    try {
+        id = Integer.parseInt(jTatualizarid.getText().trim());
+    } catch (NumberFormatException ex) {
+        mostrarErro("Informe um ID numérico válido.");
+        jTatualizarid.requestFocus();
+        return;
+    }
+
+    String novoNome = jTatualizarnome.getText().trim();
+    if (novoNome.isEmpty()) {
+        mostrarErro("Informe o novo nome da categoria.");
+        jTatualizarnome.requestFocus();
+        return;
+    }
+
+    Categoria ct = new Categoria();
+    ct.setId(id);
+    ct.setNome(novoNome);
+    CRUDCategoria cr = new CRUDCategoria();
+    try {
+        int linhas = cr.atualizar(ct);
+        if (linhas == 0) {
+            mostrarErro("Categoria não encontrada (id " + id + ").");
+        } else {
+            mostrarSucesso("Categoria alterada para \"" + novoNome + "\"!");
+            jTatualizarid.setText("");
+            jTatualizarnome.setText("");
+            jTatualizarid.requestFocus();
+        }
+    } catch (java.sql.SQLException ex) {
+        if (ex.getErrorCode() == 1062) {
+            mostrarErro("Já existe uma categoria com esse nome.");
+        } else {
+            mostrarErro("Não foi possível alterar a categoria.");
+        }
+    } catch (Exception ex) {
+        mostrarErro("Não foi possível alterar a categoria.");
+        Logger.getLogger(InterfaceCategoria.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }//GEN-LAST:event_jBatualizarActionPerformed
+
+    private void jBencontrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBencontrarActionPerformed
+        int id;
+        try {
+            id = Integer.parseInt(jTencontrar.getText().trim());
+        } catch (NumberFormatException ex) {
+            mostrarErro("Informe um ID numérico válido.");
+            jTencontrar.requestFocus();
+            return;
+        }
+
+        CRUDCategoria cr = new CRUDCategoria();
+        try {
+            Categoria ct = cr.encontrar(id);
+            if (ct == null) {
+                mostrarErro("Categoria não encontrada (id " + id + ").");
+            } else {
+                String reajuste = (ct.getPercentual() == null)
+                    ? "não definido"
+                    : ct.getPercentual().toPlainString().replace(".", ",") + "%";
+                mostrarSucesso("Encontrada: " + ct.getNome() + " | Reajuste padrão: " + reajuste);
+            }
+        } catch (Exception ex) {
+            mostrarErro("Não foi possível buscar a categoria.");
+            Logger.getLogger(InterfaceCategoria.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jBencontrarActionPerformed
+
+    private void mostrarErro(String msg) {
+        jLresultado.setForeground(java.awt.Color.RED);
+        jLresultado.setText(msg);
+    }
+
+    private void mostrarSucesso(String msg) {
+        jLresultado.setForeground(new java.awt.Color(0, 128, 0));
+        jLresultado.setText(msg);
+    }
     /**
      * @param args the command line arguments
      */
@@ -281,15 +430,15 @@ public class InterfaceCategoria extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLresultado;
     private javax.swing.JTextField jTatualizarid;
     private javax.swing.JTextField jTatualizarnome;
     private javax.swing.JTextField jTcriar;
     private javax.swing.JTextField jTdeletar;
-    private javax.swing.JTextField jTencontrarid;
-    private javax.swing.JTextField jTencontrarnome;
+    private javax.swing.JTextField jTencontrar;
+    private javax.swing.JTextField jTpercentual;
     // End of variables declaration//GEN-END:variables
 }

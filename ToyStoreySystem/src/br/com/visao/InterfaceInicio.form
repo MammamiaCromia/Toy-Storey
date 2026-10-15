@@ -28,18 +28,36 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jBfuncionario" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jBcliente" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jBproduto" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jBcategoria" alignment="0" min="-2" pref="93" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jBvenda" min="-2" pref="93" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="jBrelatorio" min="-2" pref="132" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jBcategoria" alignment="0" min="-2" pref="93" max="-2" attributes="0"/>
+                                  <Component id="jBproduto" alignment="0" min="-2" pref="93" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace pref="32" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jBcategoria1" max="32767" attributes="0"/>
+                                  <Component id="jBcategoria2" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="38" pref="38" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jBfuncionario" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jBcliente" alignment="1" min="-2" pref="93" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="118" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -48,15 +66,24 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jBcategoria" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jBproduto" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jBcliente" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jBfuncionario" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="81" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jBcategoria" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jBcliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jBcategoria1" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jBfuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jBproduto" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jBcategoria2" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jBvenda" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jBrelatorio" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="147" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -97,6 +124,38 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBfuncionarioActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jBvenda">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Vendas"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBvendaActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jBcategoria1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Consultar Vendas"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBcategoria1ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jBcategoria2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Consultar Produtos"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBcategoria2ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jBrelatorio">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Gerar Relat&#xf3;rio"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBrelatorioActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
