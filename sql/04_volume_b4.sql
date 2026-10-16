@@ -1,4 +1,4 @@
-USE loja;
+USE loja_toystorey;
 
 -- =====================================================================
 -- ESTUDO DE OTIMIZAÇÃO DE CONSULTAS
