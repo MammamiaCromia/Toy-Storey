@@ -1,4 +1,4 @@
-USE loja;
+USE loja_toystorey;
 
 -- ============================================================
 -- CONSULTAS BÁSICAS
