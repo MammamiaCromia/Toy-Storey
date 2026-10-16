@@ -1,5 +1,5 @@
 CREATE DATABASE IF NOT EXISTS loja_toystorey;
-USE loja;
+USE loja_toystorey;
 
 CREATE TABLE pessoa (
     id_pessoa   INT auto_increment,
