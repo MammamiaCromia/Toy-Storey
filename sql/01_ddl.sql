@@ -1,5 +1,4 @@
-
-CREATE DATABASE IF NOT EXISTS loja;
+CREATE DATABASE IF NOT EXISTS loja_toystorey;
 USE loja;
 
 CREATE TABLE pessoa (
@@ -171,7 +170,6 @@ CREATE INDEX idx_venda_data_hora ON venda (data_hora);
 CREATE INDEX idx_produto_nome ON produto (nome);
 
 
-
 CREATE OR REPLACE VIEW vw_resumo_vendas_diarias AS
 SELECT DATE(v.data_hora)                              AS dia,
        COUNT(DISTINCT v.id_venda)                     AS qtd_vendas,
@@ -183,3 +181,18 @@ FROM venda v
 INNER JOIN item_venda iv ON iv.id_venda = v.id_venda
 WHERE v.status = 'Concluída'
 GROUP BY DATE(v.data_hora);
+
+-- B5
+CREATE OR REPLACE VIEW vw_login AS
+SELECT f.id_pessoa, f.login, f.senha_hash, f.cargo, p.nome
+FROM funcionario f
+INNER JOIN pessoa p ON p.id_pessoa = f.id_pessoa
+WHERE p.status = 'Ativo';
+
+CREATE OR REPLACE VIEW vw_cliente_atendimento AS
+SELECT c.id_pessoa, p.nome,
+       CONCAT('***.***.', SUBSTRING(c.cpf, 7, 3), '-**') AS cpf_mascarado,
+       c.pontos_fidelidade
+FROM cliente c
+INNER JOIN pessoa p ON p.id_pessoa = c.id_pessoa
+WHERE p.status = 'Ativo';
