@@ -60,7 +60,7 @@ public class InterfaceProduto extends javax.swing.JFrame {
         jBdeletar = new javax.swing.JButton();
         jLresultado = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Nome");
 

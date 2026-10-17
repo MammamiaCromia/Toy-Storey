@@ -83,7 +83,7 @@ public class InterfaceConsultaProdutos extends javax.swing.JFrame {
         jTminimo = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTinicio.setColumns(5);
 

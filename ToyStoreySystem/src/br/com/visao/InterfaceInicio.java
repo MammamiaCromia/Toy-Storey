@@ -4,6 +4,7 @@
  */
 package br.com.visao;
 
+import br.com.controle.Sessao;
 /**
  *
  * @author joser
@@ -17,7 +18,17 @@ public class InterfaceInicio extends javax.swing.JFrame {
      */
     public InterfaceInicio() {
         initComponents();
-    }
+        jLusuario.setText("Usuário: " + Sessao.getNome() + " (" + Sessao.getCargo() + ")");
+        
+        boolean gerente = Sessao.isGerente();
+        jBcategoria.setEnabled(gerente);
+        jBcliente.setEnabled(gerente);
+        jBfuncionario.setEnabled(gerente);
+        jBproduto.setEnabled(gerente);
+        jBconsultavendas.setEnabled(gerente);
+        jBconsultaprodutos.setEnabled(gerente);
+        jBrelatorio.setEnabled(gerente);
+        }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -34,11 +45,13 @@ public class InterfaceInicio extends javax.swing.JFrame {
         jBcliente = new javax.swing.JButton();
         jBfuncionario = new javax.swing.JButton();
         jBvenda = new javax.swing.JButton();
-        jBcategoria1 = new javax.swing.JButton();
-        jBcategoria2 = new javax.swing.JButton();
+        jBconsultavendas = new javax.swing.JButton();
+        jBconsultaprodutos = new javax.swing.JButton();
         jBrelatorio = new javax.swing.JButton();
+        jLusuario = new javax.swing.JLabel();
+        jBsair = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Escolha qual você interface abrir");
 
@@ -57,14 +70,19 @@ public class InterfaceInicio extends javax.swing.JFrame {
         jBvenda.setText("Vendas");
         jBvenda.addActionListener(this::jBvendaActionPerformed);
 
-        jBcategoria1.setText("Consultar Vendas");
-        jBcategoria1.addActionListener(this::jBcategoria1ActionPerformed);
+        jBconsultavendas.setText("Consultar Vendas");
+        jBconsultavendas.addActionListener(this::jBconsultavendasActionPerformed);
 
-        jBcategoria2.setText("Consultar Produtos");
-        jBcategoria2.addActionListener(this::jBcategoria2ActionPerformed);
+        jBconsultaprodutos.setText("Consultar Produtos");
+        jBconsultaprodutos.addActionListener(this::jBconsultaprodutosActionPerformed);
 
         jBrelatorio.setText("Gerar Relatório");
         jBrelatorio.addActionListener(this::jBrelatorioActionPerformed);
+
+        jLusuario.setText("_");
+
+        jBsair.setText("Sair");
+        jBsair.addActionListener(this::jBsairActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -72,10 +90,6 @@ public class InterfaceInicio extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(112, 112, 112)
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -89,34 +103,49 @@ public class InterfaceInicio extends javax.swing.JFrame {
                                     .addComponent(jBproduto, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jBcategoria1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jBcategoria2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(jBconsultavendas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jBconsultaprodutos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(38, 38, 38)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jBfuncionario)
-                            .addComponent(jBcliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jBcliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(112, 112, 112)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLusuario)
+                                    .addComponent(jBsair))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
+                .addContainerGap()
+                .addComponent(jLusuario)
+                .addGap(17, 17, 17)
                 .addComponent(jLabel1)
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBcategoria)
                     .addComponent(jBcliente)
-                    .addComponent(jBcategoria1))
+                    .addComponent(jBconsultavendas))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBfuncionario)
                     .addComponent(jBproduto)
-                    .addComponent(jBcategoria2))
+                    .addComponent(jBconsultaprodutos))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBvenda)
                     .addComponent(jBrelatorio))
-                .addContainerGap(147, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
+                .addComponent(jBsair)
+                .addContainerGap())
         );
 
         pack();
@@ -147,20 +176,31 @@ public class InterfaceInicio extends javax.swing.JFrame {
         tela.setVisible(true);
     }//GEN-LAST:event_jBvendaActionPerformed
 
-    private void jBcategoria1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcategoria1ActionPerformed
+    private void jBconsultavendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBconsultavendasActionPerformed
         InterfaceConsultaVendas tela = new InterfaceConsultaVendas();
         tela.setVisible(true);
-    }//GEN-LAST:event_jBcategoria1ActionPerformed
+    }//GEN-LAST:event_jBconsultavendasActionPerformed
 
-    private void jBcategoria2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcategoria2ActionPerformed
+    private void jBconsultaprodutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBconsultaprodutosActionPerformed
         InterfaceConsultaProdutos tela = new InterfaceConsultaProdutos();
         tela.setVisible(true);
-    }//GEN-LAST:event_jBcategoria2ActionPerformed
+    }//GEN-LAST:event_jBconsultaprodutosActionPerformed
 
     private void jBrelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBrelatorioActionPerformed
         InterfaceRelatorio tela = new InterfaceRelatorio();
         tela.setVisible(true);
     }//GEN-LAST:event_jBrelatorioActionPerformed
+
+    private void jBsairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsairActionPerformed
+        Sessao.encerrar();
+        InterfaceLogin login = new InterfaceLogin();
+        login.setVisible(true);
+        for (java.awt.Window w : java.awt.Window.getWindows()) {
+            if (w instanceof javax.swing.JFrame && w != login) {
+                w.dispose();
+            }
+        }
+    }//GEN-LAST:event_jBsairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -189,13 +229,15 @@ public class InterfaceInicio extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBcategoria;
-    private javax.swing.JButton jBcategoria1;
-    private javax.swing.JButton jBcategoria2;
     private javax.swing.JButton jBcliente;
+    private javax.swing.JButton jBconsultaprodutos;
+    private javax.swing.JButton jBconsultavendas;
     private javax.swing.JButton jBfuncionario;
     private javax.swing.JButton jBproduto;
     private javax.swing.JButton jBrelatorio;
+    private javax.swing.JButton jBsair;
     private javax.swing.JButton jBvenda;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLusuario;
     // End of variables declaration//GEN-END:variables
 }

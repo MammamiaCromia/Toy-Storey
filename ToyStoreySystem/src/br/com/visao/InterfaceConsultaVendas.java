@@ -61,7 +61,7 @@ public class InterfaceConsultaVendas extends javax.swing.JFrame {
         jTresultados = new javax.swing.JTable();
         jLresultado = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTinicio.setColumns(5);
 

@@ -83,7 +83,7 @@ public class InterfaceCliente extends javax.swing.JFrame {
         jBbuscarcpf = new javax.swing.JButton();
         jBlistar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jBcriar.setText("Criar Cliente");
         jBcriar.addActionListener(this::jBcriarActionPerformed);

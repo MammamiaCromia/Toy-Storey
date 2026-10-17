@@ -6,6 +6,8 @@ package br.com.visao;
 
 import br.com.controle.Funcionario;
 import br.com.entidade.CRUDFuncionario;
+import br.com.controle.Sessao;
+import br.com.controle.ErroBanco;
 
 /**
  *
@@ -53,7 +55,7 @@ public class InterfaceFuncionario extends javax.swing.JFrame {
         jBdeletar = new javax.swing.JButton();
         jBtrocarsenha = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLresultado.setText("_");
 
@@ -287,8 +289,11 @@ public class InterfaceFuncionario extends javax.swing.JFrame {
             new CRUDFuncionario().inserir(f, senha);
             limparCampos();
             mostrarSucesso("Funcionário \"" + nome + "\" cadastrado com sucesso! (id " + f.getId() + ")");
-        } catch (java.sql.SQLException ex) {
-            if (ex.getErrorCode() == 1062) {
+            } catch (java.sql.SQLException ex) {
+                if (ErroBanco.semPermissao(ex)) {
+                mostrarErro(ErroBanco.MSG_SEM_PERMISSAO);
+                return;
+            }else if (ex.getErrorCode() == 1062) {
                 mostrarErro("Já existe um funcionário com esse login.");
             } else if (ex.getErrorCode() == 1406) {
                 mostrarErro("Nome ou login grande demais.");
@@ -314,6 +319,13 @@ public class InterfaceFuncionario extends javax.swing.JFrame {
     private void jBatualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBatualizarActionPerformed
         Integer id = lerId();
         if (id == null) {
+            return;
+        }
+        
+        if (id == Sessao.getIdFuncionario()
+            && ("Inativo".equals(jCstatus.getSelectedItem())
+                || !"Gerente".equals(jCcargo.getSelectedItem()))) {
+            mostrarErro("Você não pode inativar nem rebaixar o seu próprio usuário.");
             return;
         }
 
@@ -413,6 +425,11 @@ public class InterfaceFuncionario extends javax.swing.JFrame {
     private void jBinativarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBinativarActionPerformed
         Integer id = lerId();
         if (id == null) {
+            return;
+        }
+        
+        if (id == Sessao.getIdFuncionario()) {
+            mostrarErro("Você não pode inativar nem apagar o seu próprio usuário.");
             return;
         }
 

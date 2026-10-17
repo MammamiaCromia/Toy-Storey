@@ -18,6 +18,8 @@ import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import br.com.controle.Sessao;
+import br.com.controle.ErroBanco;
 /**
  *
  * @author joser
@@ -44,6 +46,9 @@ public class InterfaceVenda extends javax.swing.JFrame {
         jTcarrinho.setModel(modelo);
         jTquantidade.setText("1");
         recalcularTotal();
+        
+        jTfuncionario.setText(Sessao.getNome());
+        jTfuncionario.setEditable(false);
     }
 
     /**
@@ -78,7 +83,7 @@ public class InterfaceVenda extends javax.swing.JFrame {
         jLtotal1 = new javax.swing.JLabel();
         jLresultado = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTcodigo.addActionListener(this::jTcodigoActionPerformed);
 
@@ -345,14 +350,12 @@ public class InterfaceVenda extends javax.swing.JFrame {
     }//GEN-LAST:event_jBlimparActionPerformed
 
     private void jBfinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBfinalizarActionPerformed
-        int idFuncionario;
-        try {
-            idFuncionario = Integer.parseInt(jTfuncionario.getText().trim());
-        } catch (NumberFormatException ex) {
-            mostrarErro("Informe o id do funcionário (número).");
-            jTfuncionario.requestFocus();
+        if (!Sessao.isLogado()) {
+            mostrarErro("Faça login para registrar vendas.");
             return;
         }
+        
+int idFuncionario = Sessao.getIdFuncionario();
 
         Integer idCliente = null;
         String txtCliente = jTcliente.getText().trim();
@@ -388,6 +391,11 @@ public class InterfaceVenda extends javax.swing.JFrame {
         } catch (RegraNegocioException ex) {
             mostrarErro(ex.getMessage());
         } catch (java.sql.SQLException ex) {
+            if (ErroBanco.semPermissao(ex)) {
+                mostrarErro(ErroBanco.MSG_SEM_PERMISSAO);
+                Logger.getLogger(InterfaceVenda.class.getName()).log(Level.SEVERE, null, ex);
+                return;
+            }
             switch (ex.getErrorCode()) {
                 case 3819:
                     mostrarErro("Estoque insuficiente para um dos itens.");
