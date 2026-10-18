@@ -21,6 +21,10 @@ Sistema de Venda para uma loja de brinquedos fictícia, a **Toy Storey**. O sist
 repositorio/
 ├── README.md
 ├── docs/
+│   ├── transacoes_e_concorrencia.pdf
+│   ├── apresentacao_04_10.pdf
+│   ├── b4_relatorio.pdf
+│   ├── camada_de_acesso.pdf
 │   ├── relatorio-etapa1.pdf
 │   ├── mer-conceitual.pdf
 │   ├── modelo-logico.pdf
@@ -31,6 +35,8 @@ repositorio/
     ├── 01_ddl.sql
     ├── 02_carga.sql
     └── 03_consultas.sql
+    └── 04_volume_b4.sql
+    └── 05_acesso.sql
 ```
 
 ## Como executar (Etapa 1)
@@ -39,10 +45,6 @@ repositorio/
 2. Execute `sql/01_ddl.sql` do início ao fim — cria o banco e todas as tabelas, com todas as restrições nomeadas (`pk_`, `uq_`, `fk_`, `ck_`, `idx_`).
 3. Execute `sql/02_carga.sql` em seguida, respeitando a ordem de dependência entre as tabelas.
 4. As 15 consultas de verificação, cada uma comentada com a pergunta de negócio que responde, estão em `sql/03_consultas.sql`.
-
-## Status do projeto
-
-Esta entrega corresponde à **Etapa 1 (N1)** — projeto e construção do banco: modelo conceitual, modelo lógico, verificação de normalização, script físico, carga de dados e consultas. A **Etapa 2 (N2)** — aplicação com interface, transações, controle de concorrência, otimização de consultas, segurança e auditoria — será entregue em 22/11/2026.
 
 ## Uso de Inteligência Artificial
 
