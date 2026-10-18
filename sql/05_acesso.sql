@@ -1,6 +1,5 @@
 USE loja_toystorey;
 
-
 CREATE OR REPLACE VIEW vw_resumo_vendas_diarias AS
 SELECT DATE(v.data_hora)                              AS dia,
        COUNT(DISTINCT v.id_venda)                     AS qtd_vendas,
@@ -39,8 +38,25 @@ ALTER USER 'app_leitura'@'localhost'  IDENTIFIED BY 'Leitura@2026';
 ALTER USER 'app_auth'@'localhost'     IDENTIFIED BY 'Auth@2026';
 
 
-GRANT SELECT, INSERT, UPDATE, DELETE ON loja_toystorey.* TO 'app_gerente'@'localhost';
-REVOKE DELETE ON loja_toystorey.* FROM 'app_gerente'@'localhost';   -- venda não se apaga, se cancela
+REVOKE ALL PRIVILEGES, GRANT OPTION FROM 'app_gerente'@'localhost';
+REVOKE ALL PRIVILEGES, GRANT OPTION FROM 'app_operador'@'localhost';
+REVOKE ALL PRIVILEGES, GRANT OPTION FROM 'app_leitura'@'localhost';
+REVOKE ALL PRIVILEGES, GRANT OPTION FROM 'app_auth'@'localhost';
+
+
+GRANT SELECT, INSERT, UPDATE ON loja_toystorey.pessoa         TO 'app_gerente'@'localhost';
+GRANT SELECT, INSERT, UPDATE ON loja_toystorey.categoria      TO 'app_gerente'@'localhost';
+GRANT SELECT, INSERT, UPDATE ON loja_toystorey.cliente        TO 'app_gerente'@'localhost';
+GRANT SELECT, INSERT, UPDATE ON loja_toystorey.funcionario    TO 'app_gerente'@'localhost';
+GRANT SELECT, INSERT, UPDATE ON loja_toystorey.produto        TO 'app_gerente'@'localhost';
+GRANT SELECT, INSERT, UPDATE ON loja_toystorey.kit_composicao TO 'app_gerente'@'localhost';
+GRANT SELECT, INSERT, UPDATE ON loja_toystorey.venda          TO 'app_gerente'@'localhost';  -- UPDATE: cancelar venda
+GRANT SELECT, INSERT, UPDATE ON loja_toystorey.devolucao      TO 'app_gerente'@'localhost';
+GRANT SELECT, INSERT         ON loja_toystorey.item_venda     TO 'app_gerente'@'localhost';  -- imutável depois de gravado
+GRANT SELECT, INSERT         ON loja_toystorey.pagamento      TO 'app_gerente'@'localhost';  -- imutável depois de gravado
+GRANT SELECT                 ON loja_toystorey.auditoria      TO 'app_gerente'@'localhost';  -- trilha somente leitura
+
+
 GRANT DELETE ON loja_toystorey.pessoa         TO 'app_gerente'@'localhost';
 GRANT DELETE ON loja_toystorey.cliente        TO 'app_gerente'@'localhost';
 GRANT DELETE ON loja_toystorey.funcionario    TO 'app_gerente'@'localhost';
