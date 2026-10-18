@@ -168,6 +168,7 @@ CREATE TABLE kit_composicao (
 );
 CREATE INDEX idx_venda_data_hora ON venda (data_hora);
 CREATE INDEX idx_produto_nome ON produto (nome);
+CREATE INDEX idx_pessoa_nome ON pessoa (nome);
 
 
 CREATE OR REPLACE VIEW vw_resumo_vendas_diarias AS
