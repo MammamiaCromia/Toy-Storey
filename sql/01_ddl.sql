@@ -196,3 +196,65 @@ SELECT c.id_pessoa, p.nome,
 FROM cliente c
 INNER JOIN pessoa p ON p.id_pessoa = c.id_pessoa
 WHERE p.status = 'Ativo';
+
+
+-- =====================================================================
+-- B6: AUDITORIA
+-- =====================================================================
+CREATE TABLE auditoria (
+    id_auditoria     BIGINT AUTO_INCREMENT,
+    tabela           VARCHAR(50)  NOT NULL,
+    id_registro      INT          NOT NULL,
+    campo            VARCHAR(50)  NOT NULL,
+    valor_anterior   VARCHAR(100),
+    valor_posterior  VARCHAR(100),
+    id_funcionario   INT,
+    usuario_banco    VARCHAR(100) NOT NULL,
+    data_hora        DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT pk_auditoria PRIMARY KEY (id_auditoria),
+
+    -- RESTRICT
+    CONSTRAINT fk_auditoria_funcionario FOREIGN KEY (id_funcionario)
+        REFERENCES funcionario (id_pessoa)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE
+);
+CREATE INDEX idx_auditoria_registro ON auditoria (tabela, id_registro);
+CREATE INDEX idx_auditoria_data     ON auditoria (data_hora);
+
+DELIMITER $$
+
+-- Gatilho 1: preço. Mudança de preço altera o faturamento e a margem.
+CREATE TRIGGER trg_produto_auditar_preco
+AFTER UPDATE ON produto
+FOR EACH ROW
+BEGIN
+    IF NOT (OLD.preco_venda <=> NEW.preco_venda) THEN
+        INSERT INTO auditoria (tabela, id_registro, campo, valor_anterior,
+                               valor_posterior, id_funcionario, usuario_banco)
+        VALUES ('produto', NEW.id_produto, 'preco_venda', OLD.preco_venda,
+                NEW.preco_venda, @id_funcionario_app, CURRENT_USER());
+    END IF;
+    IF NOT (OLD.preco_custo <=> NEW.preco_custo) THEN
+        INSERT INTO auditoria (tabela, id_registro, campo, valor_anterior,
+                               valor_posterior, id_funcionario, usuario_banco)
+        VALUES ('produto', NEW.id_produto, 'preco_custo', OLD.preco_custo,
+                NEW.preco_custo, @id_funcionario_app, CURRENT_USER());
+    END IF;
+END$$
+
+-- Gatilho 2: estoque. Rastreia perdas, ajustes manuais e a baixa de cada venda.
+CREATE TRIGGER trg_produto_auditar_estoque
+AFTER UPDATE ON produto
+FOR EACH ROW
+BEGIN
+    IF NOT (OLD.quantidade_estoque <=> NEW.quantidade_estoque) THEN
+        INSERT INTO auditoria (tabela, id_registro, campo, valor_anterior,
+                               valor_posterior, id_funcionario, usuario_banco)
+        VALUES ('produto', NEW.id_produto, 'quantidade_estoque', OLD.quantidade_estoque,
+                NEW.quantidade_estoque, @id_funcionario_app, CURRENT_USER());
+    END IF;
+END$$
+
+DELIMITER ;
