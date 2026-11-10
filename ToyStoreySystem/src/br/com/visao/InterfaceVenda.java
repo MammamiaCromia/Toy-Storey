@@ -29,6 +29,7 @@ public class InterfaceVenda extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(InterfaceVenda.class.getName());
 
     private DefaultTableModel modelo;
+    private boolean visualizando = false;
     
     
     /**
@@ -270,6 +271,11 @@ public class InterfaceVenda extends javax.swing.JFrame {
     }//GEN-LAST:event_jTconsultaidActionPerformed
 
     private void jBadicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBadicionarActionPerformed
+        if (visualizando) {
+            mostrarErro("Você está visualizando uma venda. Clique em \"Limpar Carrinho\" para iniciar uma nova.");
+            return;
+        }
+        
         String codigo = jTcodigo.getText().trim();
         if (codigo.isEmpty()) {
             mostrarErro("Informe o código de barras.");
@@ -334,6 +340,11 @@ public class InterfaceVenda extends javax.swing.JFrame {
     }//GEN-LAST:event_jBadicionarActionPerformed
 
     private void jBremoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBremoverActionPerformed
+        if (visualizando) {
+            mostrarErro("Você está visualizando uma venda. Clique em \"Limpar Carrinho\" para iniciar uma nova.");
+            return;
+        }
+        
         int linha = jTcarrinho.getSelectedRow();
         if (linha == -1) {
             mostrarErro("Selecione um item do carrinho para remover.");
@@ -350,6 +361,11 @@ public class InterfaceVenda extends javax.swing.JFrame {
     }//GEN-LAST:event_jBlimparActionPerformed
 
     private void jBfinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBfinalizarActionPerformed
+        if (visualizando) {
+            mostrarErro("Você está visualizando uma venda. Clique em \"Limpar Carrinho\" para iniciar uma nova.");
+            return;
+        }
+        
         if (!Sessao.isLogado()) {
             mostrarErro("Faça login para registrar vendas.");
             return;
@@ -433,15 +449,34 @@ int idFuncionario = Sessao.getIdFuncionario();
         }
 
         try {
-            Venda v = new CRUDVenda().encontrar(id);
+            CRUDVenda crud = new CRUDVenda();
+            Venda v = crud.encontrar(id);
             if (v == null) {
                 mostrarErro("Venda não encontrada (id " + id + ").");
-            } else {
-                String cliente = (v.getIdCliente() == null) ? "sem cliente" : "cliente " + v.getIdCliente();
-                mostrarSucesso("Venda " + v.getId() + " | "
-                        + v.getDataHora().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"))
-                        + " | " + moeda(v.getValorTotal()) + " | " + v.getStatus() + " | " + cliente);
+                return;
             }
+
+            modelo.setRowCount(0);
+            for (Object[] it : crud.listarItens(id)) {
+                int qtd = (int) it[2];
+                BigDecimal preco = (BigDecimal) it[3];
+                modelo.addRow(new Object[]{
+                    it[0], it[1], qtd, preco, preco.multiply(BigDecimal.valueOf(qtd))
+                });
+            }
+
+            jTcliente.setText(v.getIdCliente() == null ? "" : String.valueOf(v.getIdCliente()));
+            String forma = crud.encontrarFormaPagamento(id);
+            if (forma != null) {
+                jCforma.setSelectedItem(forma);
+            }
+            recalcularTotal();
+            visualizando = true;
+
+            String cliente = (v.getIdCliente() == null) ? "sem cliente" : "cliente " + v.getIdCliente();
+            mostrarSucesso("Venda " + v.getId() + " | "
+                    + v.getDataHora().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"))
+                    + " | " + moeda(v.getValorTotal()) + " | " + v.getStatus() + " | " + cliente);
         } catch (Exception ex) {
             mostrarErro("Não foi possível consultar a venda.");
             Logger.getLogger(InterfaceVenda.class.getName()).log(Level.SEVERE, null, ex);
@@ -472,6 +507,11 @@ private void recalcularTotal() {
 }
 
 private void limparCarrinho() {
+    if (visualizando) {
+        jTcliente.setText("");
+        visualizando = false;
+    }
+    
     modelo.setRowCount(0);
     jTcodigo.setText("");
     jTquantidade.setText("1");

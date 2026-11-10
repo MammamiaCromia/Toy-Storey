@@ -297,4 +297,39 @@ public class CRUDVenda extends DAO {
             p.executeUpdate();
         }
     }
+    
+    public List<Object[]> listarItens(int idVenda) throws Exception {
+        List<Object[]> lista = new ArrayList<>();
+        try {
+            abrirBanco();
+            pst = con.prepareStatement("SELECT iv.id_produto, p.nome, iv.quantidade, iv.preco_congelado "
+                    + "FROM item_venda iv INNER JOIN produto p ON p.id_produto = iv.id_produto "
+                    + "WHERE iv.id_venda = ? ORDER BY iv.id_produto");
+            pst.setInt(1, idVenda);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                lista.add(new Object[]{
+                    rs.getInt("id_produto"),
+                    rs.getString("nome"),
+                    rs.getInt("quantidade"),
+                    rs.getBigDecimal("preco_congelado")
+                    });
+                }
+            return lista;
+            } finally {
+        fecharBanco();
+        }
+    }
+
+    public String encontrarFormaPagamento(int idVenda) throws Exception {
+        try {
+            abrirBanco();
+            pst = con.prepareStatement("SELECT forma_pagamento FROM pagamento WHERE id_venda = ? LIMIT 1");
+            pst.setInt(1, idVenda);
+            rs = pst.executeQuery();
+            return rs.next() ? rs.getString(1) : null;
+        } finally {
+            fecharBanco();
+        }
+    }
 }
