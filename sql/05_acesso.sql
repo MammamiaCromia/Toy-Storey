@@ -66,7 +66,7 @@ GRANT DELETE ON loja_toystorey.kit_composicao TO 'app_gerente'@'localhost';
 
 
 GRANT SELECT ON loja_toystorey.vw_cliente_atendimento TO 'app_operador'@'localhost';
-GRANT SELECT ON nome_do_banco.vw_resumo_vendas_diarias TO 'app_gerente'@'localhost';
+GRANT SELECT ON loja_toystorey.vw_resumo_vendas_diarias TO 'app_gerente'@'localhost';
 GRANT SELECT (id_pessoa, status)                             ON loja_toystorey.pessoa  TO 'app_operador'@'localhost';
 GRANT SELECT (id_pessoa, data_nascimento, pontos_fidelidade) ON loja_toystorey.cliente TO 'app_operador'@'localhost';
 GRANT UPDATE (pontos_fidelidade)                             ON loja_toystorey.cliente TO 'app_operador'@'localhost';
